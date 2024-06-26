@@ -8,17 +8,9 @@ import {
 export class SpotsService {
   private axiosInstance: AxiosInstance = axiosInstance;
 
-  constructor(private eventId: string) {
-    this.eventId = eventId;
-  }
-
-  private async fetchSpots(): Promise<EventWithSpotsDto> {
+  async fetchSpots(eventId: string): Promise<EventWithSpotsDto> {
     return await this.axiosInstance
-      .get(`/events/${this.eventId}/spots`)
+      .get(`/events/${eventId}/spots`)
       .then((response) => buildEventWithSpotsDto(response.data));
-  }
-
-  fetchSportsQuery() {
-    return { queryKey: ["fetchSpots"], queryFn: this.fetchSpots };
   }
 }
