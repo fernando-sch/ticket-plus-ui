@@ -1,4 +1,4 @@
-type RemoteEvent = {
+export type RemoteEvent = {
   id: string;
   name: string;
   organization: string;
