@@ -15,9 +15,12 @@ export async function getServerSideProps({
   params: { eventId },
 }: PageRouterProps) {
   const queryClient = new QueryClient();
-  const spotsService = new SpotsService(eventId);
+  const spotsService = new SpotsService();
 
-  await queryClient.prefetchQuery(spotsService.fetchSportsQuery());
+  await queryClient.prefetchQuery({
+    queryKey: ["fetchSpots"],
+    queryFn: () => spotsService.fetchSpots(eventId),
+  });
 
   return {
     props: {
