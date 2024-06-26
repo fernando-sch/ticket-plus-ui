@@ -1,4 +1,3 @@
-import { ErrorMessage } from "@/components/ErrorMessage/ErrorMessage";
 import { useGetEvent } from "@/hooks/useGetEvent/useGetEvent";
 
 type TotalPriceProps = {
@@ -13,10 +12,6 @@ export const CheckoutResume = ({
   payHalf,
 }: TotalPriceProps) => {
   const { data: event } = useGetEvent(eventId);
-
-  if (!event) {
-    return <ErrorMessage error="Something went wrong, try again later." />;
-  }
 
   let totalPrice = spotsQuantity * event.price;
 
